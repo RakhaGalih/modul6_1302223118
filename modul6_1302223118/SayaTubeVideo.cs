@@ -17,7 +17,8 @@ namespace modul6_1302223118
         {
             this.id = GenerateRandomId();
             //precondition
-            Debug.Assert(title.Length <= 200 && title != null, "judul tidak ada atau panjang judul melebihi batas maksimal");
+            Debug.Assert(title.Length <= 200 && title != null, "judul tidak ada atau panjang judul " +
+                "melebihi batas maksimal");
 
             this.title = title;
             this.playCount = 0;
@@ -26,6 +27,7 @@ namespace modul6_1302223118
         {
             //precondition
             Debug.Assert(count <= 25000000, "jumlah penambahan melebihi batas maksimal");
+            Debug.Assert(count >= 0, "jumlah penambahan tidak boleh negatif");
             try
             {
                 //exception

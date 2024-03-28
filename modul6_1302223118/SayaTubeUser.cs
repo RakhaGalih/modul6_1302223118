@@ -17,7 +17,7 @@ namespace modul6_1302223118
         {
             this.id = GenerateRandomId();
             //precondition
-            Debug.Assert(username.Length <= 200 && username != null, "judul tidak ada atau panjang judul melebihi batas maksimal");
+            Debug.Assert(username.Length <= 100 && username != null, "judul tidak ada atau panjang judul melebihi batas maksimal");
 
             this.userName = username;
             this.uploadedVideo = [];
@@ -40,6 +40,9 @@ namespace modul6_1302223118
 
         public void AddVideo(SayaTubeVideo video)
         {
+            Debug.Assert(video != null, "video tidak terdefinisi");
+            Debug.Assert(video.GetPlayCount() <= int.MaxValue
+                , "video tidak terdefinisi");
             this.uploadedVideo.Add(video);
         }
 
@@ -47,9 +50,12 @@ namespace modul6_1302223118
         {
             Console.WriteLine("==== video ====");
             Console.WriteLine($"User: {userName}");
+            //post condition dengan output maksimal 8 film
             for (int i = 0; i < uploadedVideo.Count; i++)
             {
-                Console.WriteLine($"Video {i} judul: {uploadedVideo[i].GetJudul()}");
+                Debug.Assert(i < 8, "Film yang ditampilkan maksimal 8");
+                Console.WriteLine($"Video {i + 1} judul: {uploadedVideo[i].GetJudul()}");
+                
             }
         }
 
